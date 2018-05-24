@@ -9,4 +9,5 @@ public class XyincApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(XyincApplication.class, args);
 	}
+
 }
