@@ -8,8 +8,8 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>xyinc</name>
-	<description>Demo project for Spring Boot</description>
+	<name>xy-inc</name>
+	<description>Projeto de API Rest que provê serviços para localização de pontos de interesse (POIs)</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -54,6 +54,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
 
 </project>
