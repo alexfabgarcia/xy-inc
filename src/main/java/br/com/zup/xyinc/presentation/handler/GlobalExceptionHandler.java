@@ -17,8 +17,7 @@ public class GlobalExceptionHandler {
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(value = Exception.class)
-    public @ResponseBody
-    ResponseErrorDto defaultErrorHandler(Exception e) throws Exception {
+    public @ResponseBody ResponseErrorDto defaultErrorHandler(Exception e) throws Exception {
         ResponseStatus annotation = AnnotationUtils.findAnnotation(e.getClass(), ResponseStatus.class);
         if (annotation != null) {
             return new ResponseErrorDto(annotation.code().value(), annotation.reason());
