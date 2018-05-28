@@ -1,15 +1,13 @@
 package br.com.zup.xyinc.presentation.endpoint;
 
 import br.com.zup.xyinc.business.service.PoiService;
-import br.com.zup.xyinc.common.entity.Poi;
+import br.com.zup.xyinc.common.dto.PoiDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -31,7 +29,7 @@ public class PoiEndpoint {
      * @return Lista de POIs.
      */
     @GetMapping
-    public ResponseEntity<List<Poi>> list() {
+    public ResponseEntity<List<PoiDto>> list() {
         return new ResponseEntity<>(poiService.list(), HttpStatus.OK);
     }
 
@@ -40,9 +38,19 @@ public class PoiEndpoint {
      * @return Lista de POIs.
      */
     @GetMapping("/near")
-    public ResponseEntity<List<Poi>> listNear(@RequestParam("x") int x, @RequestParam("y") int y,
+    public ResponseEntity<List<PoiDto>> listNear(@RequestParam("x") int x, @RequestParam("y") int y,
                                               @RequestParam("radius") int radius) {
         return new ResponseEntity<>(poiService.listNear(x, y, radius), HttpStatus.OK);
+    }
+
+    /**
+     * Realiza a criação de um ponto de interesse.
+     * @param dto O DTO de um ponto de interesse.
+     * @return DTo de um ponto de interesse criado.
+     */
+    @PostMapping
+    public ResponseEntity<PoiDto> create(@RequestBody @Valid PoiDto dto) {
+        return new ResponseEntity<>(poiService.save(dto), HttpStatus.CREATED);
     }
 
 }

@@ -1,6 +1,6 @@
 package br.com.zup.xyinc.business.service;
 
-import br.com.zup.xyinc.common.entity.Poi;
+import br.com.zup.xyinc.common.dto.PoiDto;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public interface PoiService {
      * Método responsável pela listagem dos pontos de interesse existentes.
      * @return Lista de pontos de interesse.
      */
-    List<Poi> list();
+    List<PoiDto> list();
 
     /**
      * Método responságel pela listagem de pontos de interesse a partir de um ponto de referência e de um raio
@@ -23,13 +23,13 @@ public interface PoiService {
      * @param radius O raio para busca a partir do ponto de refência.
      * @return Lista de pontos de interesse próximos ao ponto de referência.
      */
-    List<Poi> listNear(int x, int y, int radius);
+    List<PoiDto> listNear(int x, int y, int radius);
 
     /**
      * Método utilizado na criação e edição de um ponto de interesse.
      * @param poi O ponto de interesse para persistência.
      * @return O ponto de interesse persistido.
      */
-    Poi save(Poi poi);
+    PoiDto save(PoiDto poi);
 
 }
