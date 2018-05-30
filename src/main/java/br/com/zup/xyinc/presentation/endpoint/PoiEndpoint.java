@@ -39,18 +39,18 @@ public class PoiEndpoint {
      */
     @GetMapping("/near")
     public ResponseEntity<List<PoiDto>> listNear(@RequestParam("x") int x, @RequestParam("y") int y,
-                                              @RequestParam("radius") int radius) {
+                                                 @RequestParam("radius") int radius) {
         return new ResponseEntity<>(poiService.listNear(x, y, radius), HttpStatus.OK);
     }
 
     /**
      * Realiza a criação de um ponto de interesse.
-     * @param dto O DTO de um ponto de interesse.
-     * @return DTo de um ponto de interesse criado.
+     * @param poi O DTO de um ponto de interesse.
+     * @return DTO de um ponto de interesse criado.
      */
     @PostMapping
-    public ResponseEntity<PoiDto> create(@RequestBody @Valid PoiDto dto) {
-        return new ResponseEntity<>(poiService.save(dto), HttpStatus.CREATED);
+    public ResponseEntity<PoiDto> create(@RequestBody @Valid PoiDto poi) {
+        return new ResponseEntity<>(poiService.save(poi), HttpStatus.CREATED);
     }
 
 }

@@ -1,6 +1,7 @@
 package br.com.zup.xyinc.business.service.core;
 
 import br.com.zup.xyinc.business.service.PoiService;
+import br.com.zup.xyinc.business.service.validation.ValidationHelper;
 import br.com.zup.xyinc.common.dto.PoiDto;
 import br.com.zup.xyinc.common.entity.Poi;
 import br.com.zup.xyinc.common.mapper.PoiMapper;
@@ -22,10 +23,13 @@ public class PoiServiceImpl implements PoiService {
 
     private final PoiMapper mapper;
 
+    private final ValidationHelper validationHelper;
+
     @Autowired
-    public PoiServiceImpl(PoiRepository repository, PoiMapper mapper) {
+    public PoiServiceImpl(PoiRepository repository, PoiMapper mapper, ValidationHelper validationHelper) {
         this.repository = repository;
         this.mapper = mapper;
+        this.validationHelper = validationHelper;
     }
 
     @Override
@@ -41,7 +45,9 @@ public class PoiServiceImpl implements PoiService {
 
     @Override
     @Transactional
-    public PoiDto save(PoiDto poi) {
-        return mapper.toDto(repository.save(mapper.toEntity(poi)));
+    public PoiDto save(PoiDto poiDto) {
+        Poi poi = mapper.toEntity(poiDto);
+        validationHelper.validate(poi);
+        return mapper.toDto(repository.save(poi));
     }
 }

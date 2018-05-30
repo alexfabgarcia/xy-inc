@@ -7,6 +7,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.geo.Point;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * Entitade que representa um ponto de interesse (POI).
  */
@@ -19,8 +21,10 @@ public class Poi {
     @Id
     private String id;
 
+    @NotNull(message = "xyinc.poi.name.mandatory")
     private String name;
 
+    @NotNull(message = "xyinc.poi.position.mandatory")
     private Point position;
 
 }

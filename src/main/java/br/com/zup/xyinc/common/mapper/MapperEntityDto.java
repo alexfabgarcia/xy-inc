@@ -1,5 +1,7 @@
 package br.com.zup.xyinc.common.mapper;
 
+import java.util.List;
+
 /**
  * Interface base para mapeamento entre entidades e DTOs.
  * @param <E> Tipo da entidade.
@@ -20,5 +22,12 @@ public interface MapperEntityDto<E, D> {
      * @return Entidade destino.
      */
     E toEntity(D dto);
+
+    /**
+     * Realiza a conversão de uma lista de entidades em uma lista de DTOs.
+     * @param entidades A lista de entidades.
+     * @return A lista de DTOs.
+     */
+    List<D> toDtoList(List<E> entidades);
 
 }
