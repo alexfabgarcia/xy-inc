@@ -1,13 +1,10 @@
 package br.com.zup.xyinc.business.service.validation;
 
-import org.hibernate.validator.messageinterpolation.ResourceBundleMessageInterpolator;
-import org.hibernate.validator.resourceloading.AggregateResourceBundleLocator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.validation.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -25,6 +22,12 @@ public class ValidationHelper {
                 .buildValidatorFactory();
     }
 
+    /**
+     * Realiza a validação da entidade.
+     * @param entity A entidade a ser validada.
+     * @param <T> O tipo da entidade.
+     * @throws ConstraintViolationException em caso de existir alguma violação.
+     */
     public <T> void validate(final T entity) {
         Validator validator = factory.getValidator();
         Set<ConstraintViolation<T>> invalidValues = validator.validate(entity);

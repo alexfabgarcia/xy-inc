@@ -1,5 +1,6 @@
 package br.com.zup.xyinc.repository;
 
+import br.com.zup.xyinc.common.builder.PoiBuilder;
 import br.com.zup.xyinc.common.entity.Poi;
 import org.springframework.data.geo.Shape;
 import org.springframework.data.repository.Repository;
@@ -30,5 +31,19 @@ public interface PoiRepository extends Repository<Poi, Long> {
      * @return O ponto de interesse persisido.
      */
     Poi save(Poi poi);
+
+    /**
+     * Método utilizado a fim de inicalizar dados de exemplo.
+     */
+    default void initSampleData() {
+        PoiBuilder poiBuilder = new PoiBuilder();
+        save(poiBuilder.withName("Lanchonete").withCoordinateX(27D).withCoordinateY(12D).build());
+        save(poiBuilder.withName("Posto").withCoordinateX(31D).withCoordinateY(18D).build());
+        save(poiBuilder.withName("Joalheria").withCoordinateX(15D).withCoordinateY(12D).build());
+        save(poiBuilder.withName("Floricultura").withCoordinateX(19D).withCoordinateY(21D).build());
+        save(poiBuilder.withName("Pub").withCoordinateX(12D).withCoordinateY(8D).build());
+        save(poiBuilder.withName("Supermercado").withCoordinateX(23D).withCoordinateY(6D).build());
+        save(poiBuilder.withName("Churrascaria").withCoordinateX(28D).withCoordinateY(2D).build());
+    }
 
 }

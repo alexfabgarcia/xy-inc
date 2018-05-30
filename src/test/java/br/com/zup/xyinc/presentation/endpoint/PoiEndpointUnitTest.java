@@ -24,7 +24,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * Teste unitário de {@link PoiEndpoint}.
+ * Teste unitário de {@link PoiEndpoint} garantindo binding de objetos JSON e verificação de mensagens de validação.
  */
 @RunWith(SpringRunner.class)
 @WebMvcTest(PoiEndpoint.class)

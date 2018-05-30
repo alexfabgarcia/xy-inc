@@ -1,6 +1,5 @@
 package br.com.zup.xyinc.config;
 
-import br.com.zup.xyinc.common.builder.PoiBuilder;
 import br.com.zup.xyinc.repository.PoiRepository;
 import org.hibernate.validator.messageinterpolation.ResourceBundleMessageInterpolator;
 import org.hibernate.validator.resourceloading.AggregateResourceBundleLocator;
@@ -26,14 +25,7 @@ public class XyincConfig implements InitializingBean {
 
     @EventListener(ApplicationReadyEvent.class)
     public void loadPointsOfInterestAfterInitialization() {
-        PoiBuilder poiBuilder = new PoiBuilder();
-        poiRepository.save(poiBuilder.withName("Lanchonete").withCoordinateX(27D).withCoordinateY(12D).build());
-        poiRepository.save(poiBuilder.withName("Posto").withCoordinateX(31D).withCoordinateY(18D).build());
-        poiRepository.save(poiBuilder.withName("Joalheria").withCoordinateX(15D).withCoordinateY(12D).build());
-        poiRepository.save(poiBuilder.withName("Floricultura").withCoordinateX(19D).withCoordinateY(21D).build());
-        poiRepository.save(poiBuilder.withName("Pub").withCoordinateX(12D).withCoordinateY(8D).build());
-        poiRepository.save(poiBuilder.withName("Supermercado").withCoordinateX(23D).withCoordinateY(6D).build());
-        poiRepository.save(poiBuilder.withName("Churrascaria").withCoordinateX(28D).withCoordinateY(2D).build());
+        poiRepository.initSampleData();
     }
 
     @Bean
